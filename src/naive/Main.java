@@ -8,34 +8,64 @@ import weka.core.converters.ConverterUtils.DataSource;
 
 public class Main {
 
-	public static void main(String[] args) throws Exception {
-		DataSource ds = new DataSource("src/naive/carro.arff");
+	public static void main(String[] args){
+		final String BASE_ORIGINAL = "src/naive/carro.arff";
+		final String BASE_TREINAMENTO = "src/naive/base_car_treino.arff";
+		final String BASE_VALIDACAO = "src/naive/base_car_validacao.arff";
+		final String BASE_TESTE = "src/naive/base_car_testeFinal.arff";
 		
-		Instances ins = ds.getDataSet();
+		try {
+			naiveBayes(BASE_TREINAMENTO, "Treinamento", 60);
+			naiveBayes(BASE_VALIDACAO, "Validação", 20);
+			naiveBayes(BASE_TESTE, "Teste Final", 1);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		
-		//System.out.println(ins.toString());
+	}
+	/*
+	 * O parametro qtd é a quantidade de vezes que irá executar o Naive Bayes para cada dataSet
+	 * */
+	public static void naiveBayes(String nomeBase, String op, int qtd) throws Throwable {
+		
+		int i = 0;
+		while(i < qtd) {
+			DataSource ds = new DataSource(nomeBase);
+			
+			Instances ins = ds.getDataSet();
+			
+			//System.out.println(ins.toString());
 
-		ins.setClassIndex(6); //quem é a classe pra fazer a previsão
-		
-		NaiveBayes nb = new NaiveBayes();
-		nb.buildClassifier(ins);//cria o classificador
-		
-		Instance nova = new DenseInstance(7); //num de atributos no total
-		
-		nova.setDataset(ins); //associação da nova instancia com a base 
-		
-		nova.setValue(0, "vhigh");
-		nova.setValue(1, "vhigh");
-		nova.setValue(2, "2");
-		nova.setValue(3, "2");
-		nova.setValue(4, "small");
-		nova.setValue(5, "low");
-		
-		double probabilidade[] = nb.distributionForInstance(nova);
-		System.out.println("unacc: " + probabilidade[0]);
-		System.out.println("acc: " + probabilidade[1]);
-		System.out.println("good: " + probabilidade[2]);
-		System.out.println("vgood: " + probabilidade[3]);
+			ins.setClassIndex(6); 
+			
+			NaiveBayes nb = new NaiveBayes();
+			
+			nb.buildClassifier(ins);//cria o classificador
+			
+			Instance nova = new DenseInstance(7); //quantidade de atributos no total
+			
+			nova.setDataset(ins); //associação da nova instancia com a base 
+			
+			nova.setValue(0, "vhigh"); //Preço total
+			nova.setValue(1, "high"); // Preço de compra
+			nova.setValue(2, "2"); //Quantidade de portas 
+			nova.setValue(3, "4"); //Quantidade de pessoa
+			nova.setValue(4, "small"); //Porta-malas pequeno
+			nova.setValue(5, "low");  //Baixa segurança
+			
+			
+			double probabilidade[] = nb.distributionForInstance(nova);
+			
+			if(i == qtd-1) {
+				System.out.println("Resultados para a base de " + op + ":");
+				System.out.println("Probabilidade de ocorrer unacc: " + probabilidade[0]);
+				System.out.println("Probabilidade de ocorrer acc: " + probabilidade[1]);
+				System.out.println("Probabilidade de ocorrer good: " + probabilidade[2]);
+				System.out.println("Probabilidade de ocorrer vgood: " + probabilidade[3]);
+				System.out.println(" ");
+			}
+			i++;
+		}
 	}
 
 }

@@ -1,0 +1,63 @@
+@relation carro
+
+@attribute comprando {vhigh, high, med, low}
+@attribute preco {vhigh, high, med, low}
+@attribute portas {2, 3, 4, 5more}
+@attribute pessoas {2, 4, more}
+@attribute tam_portamalas {small, med, big}
+@attribute seguranca {low, med, high}
+@attribute classes {unacc, acc, good, vgood}
+
+@data
+low,vhigh,2,more,small,high,unacc
+low,vhigh,2,more,med,low,unacc
+low,vhigh,2,more,med,med,unacc
+low,vhigh,2,more,big,low,unacc
+low,vhigh,3,2,small,low,unacc
+low,vhigh,3,2,small,med,unacc
+low,vhigh,3,2,small,high,unacc
+low,vhigh,3,2,med,low,unacc
+low,vhigh,3,2,med,med,unacc
+low,vhigh,3,2,med,high,unacc
+low,vhigh,3,2,big,low,unacc
+low,vhigh,3,2,big,med,unacc
+low,vhigh,3,2,big,high,unacc
+low,vhigh,3,more,med,med,acc
+low,vhigh,3,more,med,high,acc
+low,vhigh,3,more,big,med,acc
+low,vhigh,3,more,big,high,acc
+low,vhigh,4,4,small,high,acc
+low,vhigh,4,4,med,med,acc
+low,vhigh,4,4,med,high,acc
+low,vhigh,4,4,big,med,acc
+low,vhigh,4,4,big,high,acc
+low,vhigh,4,more,small,high,acc
+low,vhigh,4,more,med,med,acc
+low,vhigh,4,more,med,high,acc
+low,vhigh,4,more,big,med,acc
+low,low,3,more,med,med,good
+low,low,3,more,big,med,good
+low,low,4,4,small,high,good
+low,low,4,4,med,med,good
+low,low,4,4,big,med,good
+low,low,4,more,small,high,good
+low,low,4,more,med,med,good
+low,low,4,more,big,med,good
+low,low,5more,4,small,high,good
+low,low,5more,4,med,med,good
+low,low,5more,4,big,med,good
+low,low,5more,more,small,high,good
+low,low,5more,more,med,med,good
+low,low,2,4,big,high,vgood
+low,low,2,more,big,high,vgood
+low,low,3,4,big,high,vgood
+low,low,3,more,med,high,vgood
+low,low,3,more,big,high,vgood
+low,low,4,4,med,high,vgood
+low,low,4,4,big,high,vgood
+low,low,4,more,med,high,vgood
+low,low,4,more,big,high,vgood
+low,low,5more,4,med,high,vgood
+low,low,5more,4,big,high,vgood
+low,low,5more,more,med,high,vgood
+low,low,5more,more,big,high,vgood
