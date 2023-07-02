@@ -1,5 +1,5 @@
 # ModeloProbabilistico
 
-Algoritmo probabilistico Naive com biblioteca WEKA - Inteligência Artificial - UEM 2023
+Algoritmo probabilistico Naive com biblioteca WEKA - Inteligência Artificial - UEM 2022
 
 
